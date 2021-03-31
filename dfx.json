@@ -1,0 +1,12 @@
+{
+  "canisters": {
+    "phone_book": {
+      "main": "src/backend/phone_book/Main.mo"
+    },
+    "www": {
+      "frontend": {},
+      "dependencies": ["phone_book"],
+      "type": "assets"
+    }
+  }
+}
