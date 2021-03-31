@@ -111,7 +111,20 @@ const IndexPage = () => {
     const email = e.target.querySelector('input[name="email"]').value;
     inputs.forEach((input) => {
       if (input.name === "photo") return;
-      card.add(input.name, input.value);
+      else if (input.name === "n") {
+        // Take full input and format for vcf
+        const names = input.value.split(" ");
+        const arr = new Array(5);
+
+        names.reverse().forEach((name, idx) => {
+          arr[idx] = name;
+        });
+
+        card.add("fn", input.value);
+        card.add(input.name, arr.join(";"));
+      } else {
+        card.add(input.name, input.value);
+      }
     });
     card.add("photo", btoa(image), { mediatype: "image/gif" });
 
@@ -120,6 +133,7 @@ const IndexPage = () => {
       inputs.forEach((input) => {
         input.value = "";
       });
+      setImage("");
     });
 
     return false;
@@ -148,8 +162,11 @@ const IndexPage = () => {
     const email = e.target.querySelector('input[name="emailsearch"]').value;
 
     actor?.get(email).then((returnedCard) => {
+      if (!returnedCard.length) {
+        return alert("No contact found for that email");
+      }
       setCard(vCard.fromJSON(returnedCard[0]));
-      console.log(card);
+      console.log(returnedCard);
     });
     return false;
   }
@@ -174,9 +191,9 @@ const IndexPage = () => {
         <h2>Add a Contact</h2>
         <fieldset>
           <h3>Personal Information</h3>
-          <label htmlFor="fn">
+          <label htmlFor="n">
             Full Name
-            <input type="text" name="fn" autoComplete="name" />
+            <input type="text" name="n" autoComplete="name" />
           </label>
           <label htmlFor="org">
             Organziation
