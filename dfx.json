@@ -6,7 +6,8 @@
     "www": {
       "frontend": {},
       "dependencies": ["phone_book"],
-      "type": "assets"
+      "type": "assets",
+      "source": ["public"]
     }
   }
 }
