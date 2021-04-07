@@ -1,4 +1,5 @@
 const dfxJson = require("./dfx.json");
+const webpack = require("webpack");
 const path = require("path");
 
 const aliases = Object.entries(dfxJson.canisters).reduce(
@@ -26,5 +27,10 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
     resolve: {
       alias: aliases,
     },
+    plugins: [
+      new webpack.ProvidePlugin({
+        Buffer: [require.resolve("buffer/"), "Buffer"],
+      }),
+    ],
   });
 };
