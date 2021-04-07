@@ -1,7 +1,6 @@
 import HM "mo:base/HashMap";
 import Text "mo:base/Text";
 import Error "mo:base/Error";
-import Array "mo:base/Array";
 import Iter "mo:base/Iter";
 
 
