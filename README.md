@@ -2,6 +2,11 @@
   IC Address Book App
 </h1>
 
+<h2>Now with a blog post tutorial!</h2>
+<a href="https://kyle-peacock.com/blog/dfinity/static-site-generators-ic">https://kyle-peacock.com/blog/dfinity/static-site-generators-ic</a>
+
+---
+
 This app is a sample application meant to illustrate how to start up a new web app on the IC.
 The project was bootstrapped using `npm init gatsby`, with the following modifications:
 
