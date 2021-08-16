@@ -2,6 +2,8 @@
   IC Address Book App
 </h1>
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/krpeacock/ic-vcf-gatsby)
+
 <h2>Now with a blog post tutorial!</h2>
 <a href="https://kyle-peacock.com/blog/dfinity/static-site-generators-ic">https://kyle-peacock.com/blog/dfinity/static-site-generators-ic</a>
 
