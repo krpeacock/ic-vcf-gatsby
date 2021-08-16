@@ -40,9 +40,6 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
         NODE_ENV: "development",
         PHONE_BOOK_CANISTER_ID: canisters["phone_book"],
       }),
-      new webpack.ProvidePlugin({
-        Buffer: [require.resolve("buffer/"), "Buffer"],
-      }),
     ],
   });
 };
