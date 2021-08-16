@@ -8,5 +8,6 @@
       "type": "assets",
       "source": ["public"]
     }
-  }
+  },
+  "dfx": "0.8.0"
 }

@@ -10,12 +10,17 @@
   "scripts": {
     "develop": "gatsby develop --port 8080",
     "start": "gatsby develop --port 8080",
+    "prestart": "npm run copy:types",
     "build": "gatsby build",
+    "prebuild": "npm run copy:types",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations"
   },
   "dependencies": {
-    "@dfinity/agent": "^0.7.1",
+    "@dfinity/agent": "^0.10.0-beta.1",
+    "@dfinity/candid": "^0.10.0-beta.1",
+    "@dfinity/principal": "^0.10.0-beta.1",
     "babel-plugin-styled-components": "^1.12.0",
     "gatsby": "^3.1.2",
     "gatsby-plugin-alias-imports": "^1.0.5",

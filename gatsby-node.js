@@ -2,32 +2,44 @@ const dfxJson = require("./dfx.json");
 const webpack = require("webpack");
 const path = require("path");
 
-const aliases = Object.entries(dfxJson.canisters).reduce(
-  (acc, [name, _value]) => {
-    // Get the network name, or `local` by default.
-    const networkName = process.env["DFX_NETWORK"] || "local";
-    const outputRoot = path.join(
-      __dirname,
-      ".dfx",
-      networkName,
-      "canisters",
-      name
-    );
+let localCanisters, prodCanisters, canisters;
 
-    return {
-      ...acc,
-      ["dfx-generated/" + name]: path.join(outputRoot, name + ".js"),
-    };
-  },
-  {}
-);
+function initCanisterIds() {
+  try {
+    localCanisters = require(path.resolve(
+      ".dfx",
+      "local",
+      "canister_ids.json"
+    ));
+  } catch (error) {
+    console.log("No local canister_ids.json found. Continuing production");
+  }
+  try {
+    prodCanisters = require(path.resolve("canister_ids.json"));
+  } catch (error) {
+    console.log("No production canister_ids.json found. Continuing with local");
+  }
+
+  const network =
+    process.env.DFX_NETWORK ||
+    (process.env.NODE_ENV === "production" ? "ic" : "local");
+
+  canisters = network === "local" ? localCanisters : prodCanisters;
+
+  for (const canister in canisters) {
+    process.env[canister.toUpperCase() + "_CANISTER_ID"] =
+      canisters[canister][network];
+  }
+}
+initCanisterIds();
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
-    resolve: {
-      alias: aliases,
-    },
     plugins: [
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: "development",
+        PHONE_BOOK_CANISTER_ID: canisters["phone_book"],
+      }),
       new webpack.ProvidePlugin({
         Buffer: [require.resolve("buffer/"), "Buffer"],
       }),

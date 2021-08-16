@@ -98,8 +98,8 @@ const IndexPage = () => {
   const [actor, setActor] = React.useState(null);
 
   React.useEffect(() => {
-    import("../actor").then((module) => {
-      setActor(module.default);
+    import("../declarations/phone_book").then((module) => {
+      setActor(module.phone_book);
     });
   }, []);
 
