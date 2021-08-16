@@ -16,8 +16,7 @@ The project was bootstrapped using `npm init gatsby`, with the following modific
 Then, to add an IC backend,
 
 - Adds `src/backend` with HashMap logic
-- Adds `src/actor.js` to interface with IC
-- adds `gatsby-node` to configure webpack with an alias for `dfx-generated` references
+- adds `gatsby-node` to configure webpack to handle environment variables for the dfx-generated actor
 
 ## Quickstart
 
@@ -27,7 +26,7 @@ Follow directions to install `dfx` if you don't have it yet: https://sdk.dfinity
 
 run `dfx start --background` to start a replica;
 
-run `dfx deploy` to deploy your canisters
+run `dfx deploy phone_book` to deploy the backend canister
 
 run `npm start` to spin up a development server
 
