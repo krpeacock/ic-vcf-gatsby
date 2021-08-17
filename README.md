@@ -36,4 +36,4 @@ run `npm start` to spin up a development server
 
 Run `npm run build` to compile the frontend app
 
-Run `npm deploy --network=ic` to deploy the app on Sodium
+Run `dfx deploy --network=ic` to deploy the app on Sodium
